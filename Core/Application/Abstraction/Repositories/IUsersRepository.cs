@@ -6,7 +6,7 @@ namespace Application.Abstraction.Repositories;
 public interface IUsersRepository
 {
     public IQueryable<User?> GetAllUsers();
-    public Task<User?> GetUserByIdAsync(string id);
+    public Task<User?> GetUserByIdAsync(Guid id);
     public Task<User?> GetUserByEmailAsync(string email);
     public Task<IList<string>> GetUserRolesAsync(User user);
     public Task<IdentityResult> CreateUserAsync(User user, string password);
