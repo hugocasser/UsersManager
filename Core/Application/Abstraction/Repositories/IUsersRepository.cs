@@ -9,6 +9,7 @@ public interface IUsersRepository
     public Task<User?> GetUserByIdAsync(Guid id);
     public Task<User?> GetUserByEmailAsync(string email);
     public Task<IList<string>> GetUserRolesAsync(User user);
+    public Task<bool> IsUserExistAsync(Guid id);
     public Task<IdentityResult> CreateUserAsync(User user, string password);
     public Task<IdentityResult> UpdateUserAsync(User user);
     public Task<IdentityResult> DeleteUserAsync(User user);
