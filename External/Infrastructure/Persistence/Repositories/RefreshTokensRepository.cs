@@ -44,7 +44,7 @@ public class RefreshTokensRepository : IRefreshTokensRepository
         return _usersDbContext.RefreshTokens.Update(token).Entity;
     }
 
-    public async Task<RefreshToken> FindUserTokenAsync(string userId, string token, CancellationToken cancellationToken)
+    public async Task<RefreshToken> FindUserTokenAsync(Guid userId, string token, CancellationToken cancellationToken)
     {
         return await _usersDbContext.RefreshTokens.SingleAsync(x => x.UserId == userId && x.Token == token, cancellationToken);
     }

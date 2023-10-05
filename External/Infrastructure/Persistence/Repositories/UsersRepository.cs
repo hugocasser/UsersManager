@@ -33,6 +33,11 @@ public class UsersRepository : IUsersRepository
         return await _userManager.GetRolesAsync(user);
     }
 
+    public async Task<bool> IsUserExistAsync(Guid id)
+    {
+        return await _userManager.FindByIdAsync(id.ToString()) is not null;
+    }
+
     public async Task<IdentityResult> CreateUserAsync(User user, string password)
     {
         return await _userManager.CreateAsync(user, password);
