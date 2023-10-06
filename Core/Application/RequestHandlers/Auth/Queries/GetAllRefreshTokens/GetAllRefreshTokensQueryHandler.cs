@@ -2,7 +2,7 @@
 using Domain.Model;
 using MediatR;
 
-namespace Application.RequestHandlers.Auth.Queries;
+namespace Application.RequestHandlers.Auth.Queries.GetAllRefreshTokens;
 
 public class GetAllRefreshTokensQueryHandler : IRequestHandler<GetAllRefreshTokensQuery, IEnumerable<RefreshToken>>
 {

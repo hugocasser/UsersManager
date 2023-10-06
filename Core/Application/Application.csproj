@@ -11,10 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="RequestHandlers\Users\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="FluentValidation" Version="11.7.1" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
       <PackageReference Include="MailKit" Version="4.2.0" />

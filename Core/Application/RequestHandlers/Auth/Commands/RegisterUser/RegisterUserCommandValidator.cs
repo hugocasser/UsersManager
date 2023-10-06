@@ -15,6 +15,7 @@ public class RegisterUserCommandValidator: AbstractValidator<RegisterUserCommand
         RuleFor(user => user.Name)
             .NotEmpty().WithMessage("Name is required.");
         RuleFor(user => user.Age)
+            .NotEmpty().WithMessage("Age is required.")
             .GreaterThan(0).WithMessage("Age must be greater than zero");
         RuleFor(user => user.Password)
             .NotEmpty().WithMessage("Password cannot be empty")
