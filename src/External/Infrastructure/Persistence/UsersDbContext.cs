@@ -25,7 +25,7 @@ public class UsersDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        // since now im getting credentials from UserSecrets, i need manually pass IConfiguration
+        // im getting credentials from UserSecrets, i need manually pass IConfiguration
         modelBuilder.ApplyConfiguration(new AdminSeederConfiguration(_configuration));
     }
 }

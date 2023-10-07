@@ -1,18 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BDE1B0C8-E1B7-4D60-B383-88EB28BD54CD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "src\Core", "{BDE1B0C8-E1B7-4D60-B383-88EB28BD54CD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{C228F81A-D0FA-4FFA-ABC8-D3E0661F6DBE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "src\External", "{C228F81A-D0FA-4FFA-ABC8-D3E0661F6DBE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{88089FF3-210A-436F-BD6C-82FF2E7C7328}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "src\Deploy", "{88089FF3-210A-436F-BD6C-82FF2E7C7328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Core\Domain\Domain.csproj", "{B10CD44D-03A0-4289-B0D3-126992E98B4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Core\Domain\Domain.csproj", "{B10CD44D-03A0-4289-B0D3-126992E98B4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Core\Application\Application.csproj", "{DB4DDF85-8568-481A-91BF-97DFA943A288}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Core\Application\Application.csproj", "{DB4DDF85-8568-481A-91BF-97DFA943A288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "External\Infrastructure\Infrastructure.csproj", "{F27D9EEB-A61E-48A8-9E6D-8768537528FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\External\Infrastructure\Infrastructure.csproj", "{F27D9EEB-A61E-48A8-9E6D-8768537528FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "External\Presentation\Presentation.csproj", "{19E07D2C-4E1D-4437-9569-4177D028F16B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\External\Presentation\Presentation.csproj", "{19E07D2C-4E1D-4437-9569-4177D028F16B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +42,13 @@ Global
 		{19E07D2C-4E1D-4437-9569-4177D028F16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E07D2C-4E1D-4437-9569-4177D028F16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19E07D2C-4E1D-4437-9569-4177D028F16B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E5492F8-C25D-4B79-B058-B468D8D391EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E5492F8-C25D-4B79-B058-B468D8D391EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E5492F8-C25D-4B79-B058-B468D8D391EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E5492F8-C25D-4B79-B058-B468D8D391EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{530F418D-214A-4F6A-9C7F-F557AEE0E1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530F418D-214A-4F6A-9C7F-F557AEE0E1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{530F418D-214A-4F6A-9C7F-F557AEE0E1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530F418D-214A-4F6A-9C7F-F557AEE0E1CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
