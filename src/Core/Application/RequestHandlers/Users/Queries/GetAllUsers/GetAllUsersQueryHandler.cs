@@ -19,6 +19,9 @@ public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, IEnumer
         var usersQuery = _usersRepository
             .GetAllUsers()
             .OrderBy(x => x.UserName)
+            .ThenBy(x => x.Age)
+            .ThenBy(x => x.Email)
+            .ThenBy(x => x.PhoneNumber)
             .Skip(PageFetchSettings.ItemsOnPage * (request.Page - 1))
             .Take(PageFetchSettings.ItemsOnPage);
 
