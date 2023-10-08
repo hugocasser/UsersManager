@@ -62,6 +62,7 @@ public sealed class UsersController : ApiController
         return Ok(result);
     }
     
+    
     [Authorize(Roles = "SuperAdmin")]
     [HttpPost("{id:guid}/set-admin")]
     public async Task<IActionResult> SetAdmin(Guid id, UserRoles role, CancellationToken cancellationToken)
