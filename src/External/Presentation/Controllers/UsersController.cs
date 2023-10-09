@@ -9,6 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Abstractions;
+using StackExchange.Redis;
 
 namespace Presentation.Controllers;
 
@@ -65,7 +66,7 @@ public sealed class UsersController : ApiController
     
     [Authorize(Roles = "SuperAdmin")]
     [HttpPost("{id:guid}/set-admin")]
-    public async Task<IActionResult> SetAdmin(Guid id, UserRoles role, CancellationToken cancellationToken)
+    public async Task<IActionResult> SetAdmin(Guid id, Roles role, CancellationToken cancellationToken)
     {        
         var command = new GiveRoleToUserCommand(id, role);
         var token  = await Sender.Send(command, cancellationToken);

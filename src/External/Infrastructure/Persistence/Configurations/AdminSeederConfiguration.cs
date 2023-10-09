@@ -1,5 +1,5 @@
 ﻿using Domain.Model;
-using Infrastructure.Exeptions;
+using Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -24,12 +24,12 @@ public class AdminSeederConfiguration : IEntityTypeConfiguration<User>
         if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("TEST_ConnectionString")))
         {
             id = Guid.Parse("C0EC4C8E-4941-45F5-B06B-3657735560E5");
-            email = "identity.dev@gmail.com";
+            email = "test.identity.dev@gmail.com";
             password = "Adm1n.dev-31_13%";
         }
         else
         {
-            id = Guid.Empty;
+            id = Guid.Parse("0A2CB952-673E-4E67-9087-90D931CB70C7");
             email = _configuration["Admin:Email"] ?? throw new UserSecretsInvalidException("setup-admin-email-secret");
             password = _configuration["Admin:Password"] ??
                        throw new UserSecretsInvalidException("setup-admin-password-secret");

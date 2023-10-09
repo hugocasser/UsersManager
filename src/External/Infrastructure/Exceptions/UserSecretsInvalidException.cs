@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Exeptions;
+﻿namespace Infrastructure.Exceptions;
 
 public class UserSecretsInvalidException : Exception
 {

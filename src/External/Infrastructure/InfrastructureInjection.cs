@@ -16,28 +16,10 @@ public static class InfrastructureInjection
         this IServiceCollection serviceCollection, 
         IApplicationConfiguration configuration)
     {
-        return configuration.IsDevelopmentEnvironment
-            ? serviceCollection.AddSqliteDatabase(configuration.DatabaseConnectionString)
-            : serviceCollection.AddPostgresDatabase(configuration.DatabaseConnectionString);
-    }
-
-    private static IServiceCollection AddSqliteDatabase(
-        this IServiceCollection serviceCollection, 
-        string? connectionString)
-    {
-        serviceCollection.AddDbContext<UsersDbContext>(options =>
-        {
-            options.EnableDetailedErrors();
-            options.UseSqlite(
-                connectionString,
-                builder =>
-                {
-                    builder.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
-                });
-        });
-
+        serviceCollection.AddPostgresDatabase(configuration.DatabaseConnectionString);
         return serviceCollection;
     }
+    
 
     private static IServiceCollection AddPostgresDatabase(
         this IServiceCollection serviceCollection, 

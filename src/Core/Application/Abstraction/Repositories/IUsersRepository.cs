@@ -13,7 +13,7 @@ public interface IUsersRepository
     public Task<IdentityResult> CreateUserAsync(User user, string password);
     public Task<IdentityResult> UpdateUserAsync(User user);
     public Task<IdentityResult> DeleteUserAsync(User user);
-    public Task<IdentityResult> SetUserRoleAsync(User user, UserRoles role);
+    public Task<IdentityResult> SetUserRoleAsync(User user, Roles role);
     public Task<bool> CheckPasswordAsync(User user, string requestPassword);
     public Task<IdentityResult> ResetPasswordAsync(User user, string token, string newPassword);
     public Task<string> GeneratePasswordResetTokenAsync(User user);

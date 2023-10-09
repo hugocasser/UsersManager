@@ -2,12 +2,10 @@
 using Application.Abstraction.Services;
 using Domain.Model;
 using MediatR;
-using Application.Common;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.VisualBasic.CompilerServices;
 using Utils = Application.Common.Utils;
 
-namespace Application.RequestHandlers.Auth.Commands;
+namespace Application.RequestHandlers.Auth.Commands.RegisterUser;
 
 public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, IdentityResult>
 {
@@ -23,27 +21,26 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, I
 
     public async Task<IdentityResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        var user = new User
-        {
-            Email = request.Email,
-            PhoneNumber = request.Phone,
-            FirstName = request.Name,
-            UserName = request.UserName,
-            Age = request.Age
-        };
-
         var tempId = Guid.NewGuid();
 
         while (await _usersRepository.IsUserExistAsync(tempId))
         {
             tempId = Guid.NewGuid();
         }
-
-        user.Id = tempId;
-
+        
+        var user = new User
+        {
+            Id = tempId,
+            Email = request.Email,
+            PhoneNumber = request.Phone,
+            FirstName = request.Name,
+            UserName = request.UserName,
+            Age = request.Age
+        };
+        
         var result = await _usersRepository.CreateUserAsync(user, request.Password);
         Utils.AggregateIdentityErrorsAndThrow(result);
-        Utils.AggregateIdentityErrorsAndThrow(await _usersRepository.SetUserRoleAsync(user, UserRoles.User));
+        Utils.AggregateIdentityErrorsAndThrow(await _usersRepository.SetUserRoleAsync(user, Roles.User));
         await _emailConfirmMessageService.SendEmailConfirmMessageAsync(user);
 
         return result;

@@ -53,7 +53,7 @@ public class UsersRepository : IUsersRepository
         return await _userManager.DeleteAsync(user);
     }
 
-    public async Task<IdentityResult> SetUserRoleAsync(User user, UserRoles role)
+    public async Task<IdentityResult> SetUserRoleAsync(User user, Roles role)
     {
         return await _userManager.AddToRoleAsync(user, role.ToString());
     }

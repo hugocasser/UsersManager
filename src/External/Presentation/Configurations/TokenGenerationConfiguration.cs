@@ -1,4 +1,4 @@
-﻿using Infrastructure.Exeptions;
+﻿using Infrastructure.Exceptions;
 using Infrastructure.Services.TokenServices;
 
 namespace Presentation.Configurations;

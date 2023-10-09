@@ -10,9 +10,10 @@ namespace Presentation.Extensions;
 
 public static class IdentityAuthenticationProgramExtension
 {
-    public static IServiceCollection AddIdentity(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddUsersIdentity(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddIdentity<User, IdentityRole>(options =>
+
+        serviceCollection.AddIdentity<User, UserRoles>(options =>
             {
                 options.Password.RequiredLength = 8;
                 options.Password.RequireUppercase = true;
@@ -24,7 +25,7 @@ public static class IdentityAuthenticationProgramExtension
             })
             .AddEntityFrameworkStores<UsersDbContext>()
             .AddDefaultTokenProviders()
-            .AddRoles<IdentityRole>();
+            .AddRoles<UserRoles>();
 
         return serviceCollection;
     }

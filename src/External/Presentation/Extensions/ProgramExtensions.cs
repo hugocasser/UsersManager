@@ -21,7 +21,7 @@ public static class ProgramExtensions
             .AddRepositories()
             .AddRedisCaching(applicationConfiguration)
             .AddApplication()
-            .AddIdentity()
+            .AddUsersIdentity()
             .AddServices(
                 new EmailServicesConfiguration(builder.Configuration),
                 tokenGenerationConfiguration)
@@ -31,17 +31,6 @@ public static class ProgramExtensions
             .AddEndpointsApiExplorer()
             .AddControllers();
         
-
-        if (IsOsx())
-        {
-            builder.WebHost.ConfigureKestrel(options =>
-            {
-                // Setup a HTTP/2 endpoint without TLS.
-                options.ListenLocalhost(
-                    applicationConfiguration.OpenPorts.HttpPort, 
-                    o => o.Protocols = HttpProtocols.Http2);
-            });
-        }
         
         builder.AddLoggingServices(applicationConfiguration);
         
@@ -126,7 +115,4 @@ public static class ProgramExtensions
         return serviceCollection;
     }
     
-    private static bool IsWindows() =>RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-    private static bool IsOsx() =>RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
-    private static bool IsLinux() =>RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
 }

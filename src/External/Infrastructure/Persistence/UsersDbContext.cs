@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Persistence;
 
-public class UsersDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+public class UsersDbContext : IdentityDbContext<User, UserRoles, Guid>
 {
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     private readonly IConfiguration _configuration;
