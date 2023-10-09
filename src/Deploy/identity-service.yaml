@@ -1,0 +1,13 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: identity-service
+spec:
+  selector:
+    app.kubernetes.io/name: identity
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+      name: http
+  type: LoadBalancer

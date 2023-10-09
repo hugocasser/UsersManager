@@ -5,6 +5,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "src\External", "{C228F81A-D0FA-4FFA-ABC8-D3E0661F6DBE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "src\Deploy", "{88089FF3-210A-436F-BD6C-82FF2E7C7328}"
+	ProjectSection(SolutionItems) = preProject
+		src\Deploy\identity-db-deployment.yaml = src\Deploy\identity-db-deployment.yaml
+		src\Deploy\identity-db-service.yaml = src\Deploy\identity-db-service.yaml
+		src\Deploy\identity-deployment.yaml = src\Deploy\identity-deployment.yaml
+		src\Deploy\identity-redis-deployment.yaml = src\Deploy\identity-redis-deployment.yaml
+		src\Deploy\identity-redis-service.yaml = src\Deploy\identity-redis-service.yaml
+		src\Deploy\identity-service.yaml = src\Deploy\identity-service.yaml
+		src\Deploy\identity-volume-claim-cache.yaml = src\Deploy\identity-volume-claim-cache.yaml
+		src\Deploy\identity-volume-claim.yaml = src\Deploy\identity-volume-claim.yaml
+		src\Deploy\identity-ingress.yaml = src\Deploy\identity-ingress.yaml
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Core\Domain\Domain.csproj", "{B10CD44D-03A0-4289-B0D3-126992E98B4F}"
 EndProject

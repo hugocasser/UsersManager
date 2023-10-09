@@ -1,0 +1,10 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: identity-volume-claim-cache
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Mi
