@@ -30,35 +30,27 @@ public static class ProgramExtensions
             .AddCors(options => options.ConfigureAllowAllCors())
             .AddEndpointsApiExplorer()
             .AddControllers();
-        
-        
+
+
         builder.AddLoggingServices(applicationConfiguration);
-        
+
         return builder;
     }
-    
+
     public static WebApplication ConfigureApplication(this WebApplication app)
     {
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseExceptionHandler("/error-development");
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-        else
-        {
-            app.UseExceptionHandler("/error");
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
+
+        app.UseExceptionHandler("/error");
 
         app.UseLoggingDependOnEnvironment();
         
-        // if we will be deploying in kubernetes, then https and ssl certificates
-        // will be managing by kubernetes it self
         if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "false")
         {
             app.UseHttpsRedirection();
         }
-        
+
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseCors("AllowAll");
@@ -71,12 +63,12 @@ public static class ProgramExtensions
     {
         using var scope = webApplication.Services.CreateScope();
         var serviceProvider = scope.ServiceProvider;
-        
+
         try
         {
             var usersDbContext = serviceProvider.GetRequiredService<UsersDbContext>();
             await usersDbContext.Database.EnsureCreatedAsync();
-            
+
             await webApplication.RunAsync();
         }
         catch (Exception ex)
@@ -87,7 +79,7 @@ public static class ProgramExtensions
 
         return webApplication;
     }
-    
+
     private static CorsOptions ConfigureAllowAllCors(this CorsOptions options)
     {
         options.AddPolicy("AllowAll", policy =>
@@ -96,7 +88,7 @@ public static class ProgramExtensions
             policy.AllowAnyMethod();
             policy.AllowAnyOrigin();
         });
-        
+
         return options;
     }
 
@@ -114,5 +106,4 @@ public static class ProgramExtensions
 
         return serviceCollection;
     }
-    
 }

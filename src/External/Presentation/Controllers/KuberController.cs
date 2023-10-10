@@ -17,7 +17,11 @@ public sealed class KuberController : ApiController
     public KuberController(ISender sender) : base(sender)
     {
     }
-
+    /// <summary>
+    /// it uses for k8s
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns>200ok</returns>
     [HttpGet]
     public async Task<IActionResult> HealthCheck(CancellationToken cancellationToken)
     {

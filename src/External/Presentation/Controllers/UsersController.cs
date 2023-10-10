@@ -9,7 +9,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Abstractions;
-using StackExchange.Redis;
 
 namespace Presentation.Controllers;
 
@@ -20,6 +19,12 @@ public sealed class UsersController : ApiController
     {
     }
 
+    /// <summary>
+    /// Get user by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>200 or 404</returns>
     [Authorize(Roles = "Admin")]
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetUserById(Guid id, CancellationToken cancellationToken)
@@ -30,6 +35,12 @@ public sealed class UsersController : ApiController
         return Ok(result);
     }
 
+    /// <summary>
+    /// get user roles by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [Authorize(Roles = "Support, SuperAdmin")]
     [HttpGet("{id:Guid}/roles")]
     public async Task<IActionResult> GetUserRoles(Guid id, CancellationToken cancellationToken)
@@ -40,6 +51,13 @@ public sealed class UsersController : ApiController
         return Ok(result);
     }
     
+    /// <summary>
+    /// get all users
+    /// </summary>
+    /// <param name="page"></param>
+    /// it needs for pagination
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [Authorize(Roles = "Admin")]
     [HttpGet("{page:int}")]
     public async Task<IActionResult> GetAllUsers(int page, CancellationToken cancellationToken)
@@ -50,6 +68,14 @@ public sealed class UsersController : ApiController
         return Ok(result);
     }
     
+    /// <summary>
+    /// use this method to change password
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="changeUserPasswordDto"></param>
+    /// old password and new password
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [Authorize(Roles = "User, Admin, Support, SuperAdmin")]
     [HttpPut("{id:guid}/password")]
     public async Task<IActionResult> ChangeUserPassword(Guid id, ChangeUserPasswordDto changeUserPasswordDto, CancellationToken cancellationToken)
@@ -64,6 +90,13 @@ public sealed class UsersController : ApiController
     }
     
     
+    /// <summary>
+    /// use this method to change user role
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="role"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [Authorize(Roles = "SuperAdmin")]
     [HttpPost("{id:guid}/set-admin")]
     public async Task<IActionResult> SetAdmin(Guid id, Roles role, CancellationToken cancellationToken)
