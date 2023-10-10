@@ -27,8 +27,14 @@ This project was developed using clean monolit arhitecture with following tech s
 - Docker and Kubernetes for deploying
 
 # Launch
+```shell
+# Run posgresql database
+C:\...\src> docker compose up
 
-To launch application in local environment, you need run these commands:
+# Run WebApi Project
+C:\...\src> dotnet run External/Presentation/Presentation.csproj
+
+# Or to launch application with k8s, you need run these commands:
 
 ```shell
 # Build Docker Images
