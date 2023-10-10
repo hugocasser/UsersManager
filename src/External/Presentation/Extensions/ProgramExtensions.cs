@@ -40,7 +40,11 @@ public static class ProgramExtensions
     public static WebApplication ConfigureApplication(this WebApplication app)
     {
         app.UseSwagger();
-        app.UseSwaggerUI();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApiDemo v1");
+            c.RoutePrefix = "swagger";
+        });
 
         app.UseExceptionHandler("/error");
 
