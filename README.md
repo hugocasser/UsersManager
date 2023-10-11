@@ -27,8 +27,27 @@ This project was developed using clean monolit arhitecture with following tech s
 - Docker and Kubernetes for deploying
 
 # Launch
+At first you need setup user secrets:
+```shell
+dotnet user-secrets set "Smtp:Password" "ebqatxmtxaurcdfu" --project $PROJECT_PATH
+dotnet user-secrets set "Jwt:Key" "865D92FD-B1C8-41A4-850F-409792C9B740" --project $PROJECT_PATH
+dotnet user-secrets set "Jwt:Audience" "identity" --project $PROJECT_PATH
+dotnet user-secrets set "Jwt:Issuer" "identity" --project $PROJECT_PATH
+dotnet user-secrets set "Admin:Password" "Adm1n.dev-31_13%" --project $PROJECT_PATH
+dotnet user-secrets set "Admin:Email" "identity.dev@gmail.com" --project $PROJECT_PATH
+dotnet user-secrets set "Admin:Id" "4e274126-1d8a-4dfd-a025-806987095809" --project $PROJECT_PATH
 
-To launch application in local environment, you need run these commands:
+shell```
+
+```shell
+# Run posgresql database
+C:\...\src> docker compose up
+
+# Run WebApi Project
+C:\...\src> dotnet run External/Presentation/Presentation.csproj
+shell```
+
+Or to launch application with k8s, you need run these commands:
 
 ```shell
 # Build Docker Images
@@ -39,4 +58,5 @@ C:\...\src> docker push yourname/vebtechtask
 
 # Run Kubernetes services
 C:\...\src> kubectl apply -f .\Deploy\
+shell```
 
