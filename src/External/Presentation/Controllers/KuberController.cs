@@ -18,7 +18,7 @@ public sealed class KuberController : ApiController
     {
     }
     /// <summary>
-    /// it uses for k8s
+    /// it uses for k8s health check
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns>200ok</returns>

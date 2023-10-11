@@ -12,6 +12,7 @@ using Presentation.Abstractions;
 
 namespace Presentation.Controllers;
 
+[Produces("application/json")]
 [Route("api/[controller]/")]
 public sealed class UsersController : ApiController
 {
@@ -24,8 +25,12 @@ public sealed class UsersController : ApiController
     /// </summary>
     /// <param name="id"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns>200 or 404</returns>
-    [Authorize(Roles = "Admin")]
+    /// <returns>User</returns>
+    /// <response code="200">Success</response>
+    /// <response code="404">User not found</response>
+    /// <response code="403">Validation failed</response>
+    /// <response code="401">Unauthorized</response>
+    [Authorize(Roles = "User, Admin, Support, SuperAdmin")]
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetUserById(Guid id, CancellationToken cancellationToken)
     {
@@ -40,7 +45,11 @@ public sealed class UsersController : ApiController
     /// </summary>
     /// <param name="id"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <returns>list of user roles</returns>
+    /// /// <response code="200">Success</response>
+    /// <response code="404">User not found</response>
+    /// <response code="403">Validation failed</response>
+    /// <response code="401">Unauthorized</response>
     [Authorize(Roles = "Support, SuperAdmin")]
     [HttpGet("{id:Guid}/roles")]
     public async Task<IActionResult> GetUserRoles(Guid id, CancellationToken cancellationToken)
@@ -57,7 +66,11 @@ public sealed class UsersController : ApiController
     /// <param name="page"></param>
     /// it needs for pagination
     /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <returns>list of users(count = page)</returns>
+    /// <response code="200">Success</response>
+    /// <response code="404">User not found</response>
+    /// <response code="403">Validation failed</response>
+    /// <response code="401">Unauthorized</response>
     [Authorize(Roles = "Admin")]
     [HttpGet("{page:int}")]
     public async Task<IActionResult> GetAllUsers(int page, CancellationToken cancellationToken)
@@ -73,9 +86,12 @@ public sealed class UsersController : ApiController
     /// </summary>
     /// <param name="id"></param>
     /// <param name="changeUserPasswordDto"></param>
-    /// old password and new password
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    /// <response code="200">Success</response>
+    /// <response code="404">User not found</response>
+    /// <response code="403">Validation failed</response>
+    /// <response code="401">Unauthorized</response>
     [Authorize(Roles = "User, Admin, Support, SuperAdmin")]
     [HttpPut("{id:guid}/password")]
     public async Task<IActionResult> ChangeUserPassword(Guid id, ChangeUserPasswordDto changeUserPasswordDto, CancellationToken cancellationToken)
@@ -96,10 +112,14 @@ public sealed class UsersController : ApiController
     /// <param name="id"></param>
     /// <param name="role"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <returns>new jwt token</returns>
+    /// <response code="200">Success</response>
+    /// <response code="404">User not found</response>
+    /// <response code="403">Validation failed</response>
+    /// <response code="401">Unauthorized</response>
     [Authorize(Roles = "SuperAdmin")]
-    [HttpPost("{id:guid}/set-admin")]
-    public async Task<IActionResult> SetAdmin(Guid id, Roles role, CancellationToken cancellationToken)
+    [HttpPost("{id:guid}/set-role")]
+    public async Task<IActionResult> SetRole(Guid id, Roles role, CancellationToken cancellationToken)
     {        
         var command = new GiveRoleToUserCommand(id, role);
         var token  = await Sender.Send(command, cancellationToken);

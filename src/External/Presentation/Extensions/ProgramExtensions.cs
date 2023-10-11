@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
 using Application;
 using Infrastructure;
 using Infrastructure.Persistence;
@@ -106,6 +107,9 @@ public static class ProgramExtensions
                 Name = "Authorization",
                 Type = SecuritySchemeType.ApiKey
             });
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath);
         });
 
         return serviceCollection;

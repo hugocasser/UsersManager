@@ -11,6 +11,7 @@ using Presentation.Abstractions;
 
 namespace Presentation.Controllers;
 
+[Produces("application/json")]
 [Route("api/[controller]/[action]")]
 public sealed class AuthController : ApiController
 {
@@ -25,10 +26,13 @@ public sealed class AuthController : ApiController
     /// Register user, and send verification mail
     /// </remarks>
     /// <param name="command">
-    /// gets name,email, phone, password, username, age and send confirm mail
     /// </param>
     /// <param name="cancellationToken"></param>
-    /// <returns>if success 200ok</returns>
+    /// <remarks>create user and send verification mail</remarks>
+    /// <returns>Nothing</returns>
+    /// <response code ="200">Success</response>
+    /// <response code ="403">Validation failed</response>
+    /// <response code ="500">Some problems with smtp service or with db(you can see it in server response)</response>
     [HttpPost]
     public async Task<IActionResult> Register(RegisterUserCommand command, CancellationToken cancellationToken)
     {
@@ -41,13 +45,16 @@ public sealed class AuthController : ApiController
     /// Use this method to login
     /// </summary>
     /// <remarks>
-    /// login user
+    /// get user password and mail
     /// </remarks>
     /// <param name="command">
-    /// email and password
     /// </param>
     /// <param name="cancellationToken"></param>
-    /// <returns>if success 200ok and jwt token</returns>
+    /// <remarks>login user</remarks>
+    /// <returns>Auth token</returns>
+    /// <response code ="200">Success</response>
+    /// <response code ="403">Validation failed</response>
+    /// <response code ="401">Incorrect data</response>
     [HttpPost]
     public async Task<IActionResult> Login(LoginUserCommand command, CancellationToken cancellationToken)
     {
@@ -57,16 +64,21 @@ public sealed class AuthController : ApiController
     }
     
     /// <summary>
-    /// Use this method to verify email
+    /// Use this method to confirm email
     /// </summary>
     /// <remarks>
-    /// confirm
+    /// confirm user mail 
     /// </remarks>
-    /// <param name="command">
-    /// user id and verification code
+    /// <param name="Id">
+    /// guid
+    /// </param>
+    /// <param name="code">
+    /// code from your mail
     /// </param>
     /// <param name="cancellationToken"></param>
-    /// <returns>if success 200ok</returns>
+    /// <returns>message with result</returns>
+    /// <response code ="200">Success</response>
+    /// <response code ="403">Validation failed</response>
     [HttpGet("{userId}/{code}")]
     public async Task<IActionResult> ConfirmEmail(Guid userId, string code, CancellationToken cancellationToken)
     {
@@ -80,13 +92,15 @@ public sealed class AuthController : ApiController
     /// Use this method if you didn't receive mail
     /// </summary>
     /// <remarks>
-    /// resend
+    /// resend mail to user mail
     /// </remarks>
     /// <param name="command">
-    /// user email and password
     /// </param>
     /// <param name="cancellationToken"></param>
     /// <returns>if success 200ok</returns>
+    /// <response code ="200">Success</response>
+    /// <response code ="403">Validation failed</response>
+    /// <response code ="401">Incorrect data</response>
     [HttpPost]
     public async Task<IActionResult> ResendEmailVerificationToken(ResendEmailVerificationTokenCommand command, CancellationToken cancellationToken)
     {
@@ -96,16 +110,17 @@ public sealed class AuthController : ApiController
     }
     
     /// <summary>
-    /// Use this method if you didn't receive mail
+    /// Use this method to refresh your jwt token
     /// </summary>
     /// <remarks>
     /// refresh
     /// </remarks>
     /// <param name="command">
-    /// user id and refreshToken
     /// </param>
     /// <param name="cancellationToken"></param>
-    /// <returns>if success 200ok and new jwt token</returns>
+    /// <returns>new jwt token</returns>
+    /// <response code ="200">Success</response>
+    /// <response code ="403">Validation failed</response>
     [HttpPost("{userId}/{refreshToken}")]
     public async Task<IActionResult> RefreshToken(Guid userId, string refreshToken, CancellationToken cancellationToken)
     {
