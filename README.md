@@ -1,8 +1,5 @@
-# VebTechTestTask
-A test assignment to a VebTechnologies company for the junior position .NET developer.
-
-# Task:
-Create a ASP.NET Core Web API that will expose CRUD (Create, Read, Update, Delete) operations to manage the list of users.
+# UsersManager
+ASP.NET Core Web CRUD API to manage the list of users. Add pagination and filtration, mail confirmation and deploy it to k8s.
 
 # Architecture
 This project was developed using clean monolit arhitecture with following tech stack:
