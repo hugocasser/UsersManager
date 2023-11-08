@@ -42,7 +42,7 @@ C:\...\src> docker compose up
 
 # Run WebApi Project
 C:\...\src> dotnet run External/Presentation/Presentation.csproj
-shell```
+```shell
 
 Or to launch application with k8s, you need run these commands:
 
