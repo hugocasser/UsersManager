@@ -33,7 +33,7 @@ dotnet user-secrets set "Jwt:Issuer" "identity" --project $PROJECT_PATH
 dotnet user-secrets set "Admin:Password" "Adm1n.dev-31_13%" --project $PROJECT_PATH
 dotnet user-secrets set "Admin:Email" "identity.dev@gmail.com" --project $PROJECT_PATH
 dotnet user-secrets set "Admin:Id" "4e274126-1d8a-4dfd-a025-806987095809" --project $PROJECT_PATH
-```shell
+```
 
 ```shell
 # Run posgresql database
@@ -41,7 +41,7 @@ C:\...\src> docker compose up
 
 # Run WebApi Project
 C:\...\src> dotnet run External/Presentation/Presentation.csproj
-```shell
+```
 
 Or to launch application with k8s, you need run these commands:
 
@@ -54,5 +54,5 @@ C:\...\src> docker push yourname/vebtechtask
 
 # Run Kubernetes services
 C:\...\src> kubectl apply -f .\Deploy\
-shell```
+```
 
